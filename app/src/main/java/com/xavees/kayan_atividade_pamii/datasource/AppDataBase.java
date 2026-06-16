@@ -1,0 +1,40 @@
+package com.xavees.kayan_atividade_pamii.datasource;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import androidx.annotation.Nullable;
+
+import com.xavees.kayan_atividade_pamii.api.AppUtil;
+import com.xavees.kayan_atividade_pamii.datamodel.ClienteDataModel;
+
+
+public class AppDataBase extends SQLiteOpenHelper {
+    public static final String NAME = "etim.sqlite";
+    public static int version = 1;
+
+    SQLiteDatabase db;
+
+    public AppDataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    public AppDataBase(Context context) {
+        super(context, NAME, null, version);
+        db = getWritableDatabase();
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        Log.i(AppUtil.TAG, "Criando a tabela " + ClienteDataModel.TABELA);
+        db.execSQL(ClienteDataModel.criarTabela());
+    }
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+}
+
+
