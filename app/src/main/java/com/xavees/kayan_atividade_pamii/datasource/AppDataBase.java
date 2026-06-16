@@ -66,6 +66,8 @@ public class AppDataBase extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
+
+
                 Cliente cliente = new Cliente();
                 cliente.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ClienteDataModel.ID)));
                 cliente.setNome(cursor.getString(cursor.getColumnIndexOrThrow(ClienteDataModel.NOME)));
